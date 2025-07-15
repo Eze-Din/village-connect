@@ -3,7 +3,7 @@ import { GoogleGenAI } from "@google/genai";
 
 // A mock API key is used here as we can't rely on `process.env`.
 // In a real application, this should be handled securely.
-const API_KEY = "YOUR_API_KEY_HERE"; // This would be process.env.API_KEY in a real setup
+const API_KEY = "process.env.API_KEY"; // This would be process.env.API_KEY in a real setup
 
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
