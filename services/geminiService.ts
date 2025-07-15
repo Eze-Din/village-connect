@@ -1,11 +1,18 @@
 
 import { GoogleGenAI } from "@google/genai";
 
-// This service assumes `process.env.API_KEY` is set in the environment.
-// The API key must be provided as an environment variable for security and correctness.
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// A mock API key is used here as we can't rely on `process.env`.
+// In a real application, this should be handled securely.
+const API_KEY = "YOUR_API_KEY_HERE"; // This would be process.env.API_KEY in a real setup
+
+const ai = new GoogleGenAI({ apiKey: API_KEY });
 
 export const draftContent = async (basePrompt: string): Promise<string> => {
+  if (API_KEY === "YOUR_API_KEY_HERE") {
+    console.warn("Gemini API key is not set. Returning mock data.");
+    return new Promise(resolve => setTimeout(() => resolve(`This is a mock AI-generated response for the prompt: "${basePrompt}". Please set up your Gemini API key in services/geminiService.ts to get real responses.`), 1000));
+  }
+  
   try {
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
@@ -17,6 +24,6 @@ export const draftContent = async (basePrompt: string): Promise<string> => {
     return response.text;
   } catch (error) {
     console.error("Error drafting content with Gemini:", error);
-    return "There was an error generating content. The API key might be missing or invalid. Please check the setup and try again.";
+    return "Error generating content. Please check your API key and network connection, then try again.";
   }
 };

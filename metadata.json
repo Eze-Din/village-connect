@@ -1,6 +1,5 @@
 {
   "name": "Village Connect",
   "description": "A mobile-first web application for village administration, streamlining staff management, bid processes, and resident services to enhance efficiency and transparency.",
-  "requestFramePermissions": [],
-  "prompt": ""
+  "requestFramePermissions": []
 }
