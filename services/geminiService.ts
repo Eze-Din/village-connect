@@ -8,7 +8,7 @@ const API_KEY = "process.env.API_KEY"; // This would be process.env.API_KEY in a
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
 export const draftContent = async (basePrompt: string): Promise<string> => {
-  if (API_KEY === "YOUR_API_KEY_HERE") {
+  if (API_KEY === "process.env.API_KEY") {
     console.warn("Gemini API key is not set. Returning mock data.");
     return new Promise(resolve => setTimeout(() => resolve(`This is a mock AI-generated response for the prompt: "${basePrompt}". Please set up your Gemini API key in services/geminiService.ts to get real responses.`), 1000));
   }
